@@ -1,0 +1,27 @@
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+
+# XAMPP: root tanpa password, port default 3306
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    'mysql+pymysql://root:@127.0.0.1:3306/kampus'
+)
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+class Mahasiswa(db.Model):
+    __tablename__ = 'mahasiswa'
+    id = db.Column(db.Integer, primary_key=True)
+    nama = db.Column(db.String(100))
+    prodi = db.Column(db.String(100))
+
+@app.route('/')
+def index():
+    data = Mahasiswa.query.all()
+    return render_template('index.html', rows=data)
+
+if __name__ == '__main__':
+    app.run(debug=True)

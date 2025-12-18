@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Data Mahasiswa</title>
+</head>
+<body>
+    <h1>Data Mahasiswa</h1>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Prodi</th>
+        </tr>
+        {% for m in rows %}
+        <tr>
+            <td>{{ m.id }}</td>
+            <td>{{ m.nama }}</td>
+            <td>{{ m.prodi }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
