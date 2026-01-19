@@ -7,11 +7,19 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     'mysql+pymysql://root:@localhost:3306/kampus'
 )
+=======
+# XAMPP: root tanpa password, port default 3306
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    'mysql+pymysql://root:@127.0.0.1:3306/kampus'
+)
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+
 # Mapping tabel mahasiswa (tanpa create table)
+
 class Mahasiswa(db.Model):
     __tablename__ = 'mahasiswa'
     id = db.Column(db.Integer, primary_key=True)
